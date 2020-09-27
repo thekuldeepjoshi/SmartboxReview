@@ -52,4 +52,30 @@ class AppController extends Controller
          */
         //$this->loadComponent('Security');
     }
+      public function GetFavActivities($res){
+         foreach($res['items'] as $result){
+             $ratings[] = $result['rating'];
+             sort($ratings);
+             var_dump($ratings);
+                }
+    }
+   
+     public function GetWrostActivities($res){
+         foreach($res['items'] as $result){
+                    
+                }
+                return $result;
+    }
+     public function GetBestCust($res){
+         foreach($res['items'] as $result){
+                    
+                }
+                return $result;
+    }
+     public function GetCustUsage($res){
+         foreach($res['items'] as $result){
+                    
+                }
+                return $result;
+    }
 }
