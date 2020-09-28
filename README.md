@@ -1,3 +1,19 @@
+# SmartBox Review system
+
+Download or clone
+Download the zip file or [Clone](https://github.com/thekuldeepjoshi/SmartboxReview) this or opne with github desktop
+
+In your terminal type the following. <br>
+$ cd /path/to/app <br>
+
+$ bin/cake cake GetReview <br>
+
+Enter the Product id, Number of Pages you want to search and Country code.
+
+
+
+
+
 # CakePHP Application Skeleton
 
 [![Build Status](https://img.shields.io/travis/cakephp/app/master.svg?style=flat-square)](https://travis-ci.org/cakephp/app)
