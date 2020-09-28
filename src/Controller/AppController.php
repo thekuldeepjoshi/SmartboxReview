@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -12,6 +13,7 @@
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App\Controller;
 
 use Cake\Controller\Controller;
@@ -25,8 +27,7 @@ use Cake\Event\Event;
  *
  * @link https://book.cakephp.org/3/en/controllers.html#the-app-controller
  */
-class AppController extends Controller
-{
+class AppController extends Controller {
 
     /**
      * Initialization hook method.
@@ -37,8 +38,8 @@ class AppController extends Controller
      *
      * @return void
      */
-    public function initialize()
-    {
+    
+    public function initialize() {
         parent::initialize();
 
         $this->loadComponent('RequestHandler', [
@@ -52,30 +53,51 @@ class AppController extends Controller
          */
         //$this->loadComponent('Security');
     }
-      public function GetFavActivities($res){
-         foreach($res['items'] as $result){
-             $ratings[] = $result['rating'];
-             sort($ratings);
-             var_dump($ratings);
-                }
+
+    public function GetFavActivities($res) {       
+        $max = array();
+        rsort($res);
+        for ($i = 0; $i < 3; $i++) {
+            $max[] = $res[$i];
+        }
+        return $max;
     }
-   
-     public function GetWrostActivities($res){
-         foreach($res['items'] as $result){
-                    
-                }
-                return $result;
+
+    public function GetWrostActivities($res) {
+        $worst = array();
+        sort($res);
+        for ($i = 0; $i < 3; $i++) {
+            $worst[] = $res[$i];
+        }
+        return $worst;
     }
-     public function GetBestCust($res){
-         foreach($res['items'] as $result){
-                    
-                }
-                return $result;
+
+    public function GetBestCust($res) {
+        $bestCustomer = "NoCustFound"; 
+        foreach($res as $result){
+            $author[] = $result['author'];
+        }
+        foreach ($author as $current_key => $current_array) { //loop throught to each customer
+            $search_key = array_search($current_array, $author); // search auther in the currnet array and return the key
+            if ($current_key != $search_key) { // match current auther's key with search array key.
+                $bestCustomer = $author[$current_key];  // if any duplicates found you have got the best customer.
+            } 
+        }
+        return $bestCustomer;
     }
-     public function GetCustUsage($res){
-         foreach($res['items'] as $result){
-                    
-                }
-                return $result;
+
+    public function GetCustUsage($res) {
+        $ReusedActivity = "NoReusedActivity"; 
+        foreach($res as $result){
+            $activity[] = $result['activity_name'];
+        }
+        foreach ($activity as $current_key => $current_array) { //loop throught to each activity
+            $search_key = array_search($current_array, $activity); // search activity in the currnet array and return the key
+            if ($current_key != $search_key) { // match current activity's key with search array key.
+                $ReusedActivity = $activity[$current_key];  // if any duplicates found you have got the bmost reused activity.
+            } 
+        }
+        return $ReusedActivity;
     }
+
 }
